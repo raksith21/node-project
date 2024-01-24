@@ -1,6 +1,8 @@
 const express = require('express')
+const path = require('path');
 const http = require('http')
 const url = require('url')
+var htmlDispay = require('./app.html')
 const app = express()
 const port = 3000
 const users = {
@@ -21,28 +23,37 @@ const users = {
     }
 }
 
-app.get('/', (req, res) => {
-  res.send('Hello User')
-})
+// app.get('/', (req, res) => {
+//     res.sendFile('./app.html', {root: __dirname })
+//     // res.render(htmlDispay);
+// })
+
+app.get('/', function(req,res){
+    res.sendFile(path.join(__dirname, '/app.html'));
+});
 
 app.get('/user/:id', (req, res) => {
     var idValue = req.params;
-    // console.log(req.params)
-    // var currentUrl = req.url;
-    // var q = url.parse(currentUrl, true);
-    // var path = q.pathname;
-    // var lastValue = path.split('/');
-    // lastValue = lastValue[lastValue.length-1];
-    // console.log(q.pathname);
-    // res.write(users[t[t.length-1]].name);
-    // res.write(users[t[t.length-1]].age);
-    // res.write(users[t[t.length-1]].location);
     res.write(users[idValue.id].name + '-');
     res.write(users[idValue.id].age + '(');
     res.write(users[idValue.id].location + ')');
     res.send()
 
 })
+
+app.get('/user', (req, res) => {
+    var userId = req.query;
+    res.write(users[userId.id].name + '-');
+    res.write(users[userId.id].age + '(');
+    res.write(users[userId.id].location + ')');
+    res.send()
+})
+
+function submitHandler(){
+    console.log("IN submit.....")
+}
+
+
 
 app.listen(port, () => {
 //   console.log(`Example app listening on port ${port}`)
