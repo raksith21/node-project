@@ -5,13 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="app.js"></script>
         <title>Document</title>
+        <style>
+            .formArea{
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        <div>
-            <form>
+        <div class="formArea">
+            <form action='/user'  method="post">
                 <label for="id">Enter Id:</label>
                 <input type="text" name="id">
-                <button type="submit" onclick="submitHandler()">Submit</button>
+                <br><br>
+                <button type="submit">Submit</button>
             </form>
         </div>
     </body>

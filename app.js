@@ -1,8 +1,5 @@
 const express = require('express')
-const path = require('path');
-const http = require('http')
-const url = require('url')
-var htmlDispay = require('./app.html')
+const bodyParser = require('body-parser');
 const app = express()
 const port = 3000
 const users = {
@@ -23,13 +20,10 @@ const users = {
     }
 }
 
-// app.get('/', (req, res) => {
-//     res.sendFile('./app.html', {root: __dirname })
-//     // res.render(htmlDispay);
-// })
-
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname, '/app.html'));
+    res.render('app', { title: 'Express with EJS' });
 });
 
 app.get('/user/:id', (req, res) => {
@@ -41,7 +35,18 @@ app.get('/user/:id', (req, res) => {
 
 })
 
+app.post('/user', (req, res) => {
+    console.log("In post...")
+    var userId = req.body;
+    console.log(userId);
+    res.write(users[userId.id].name + '-');
+    res.write(users[userId.id].age + '(');
+    res.write(users[userId.id].location + ')');
+    res.send()
+})
+
 app.get('/user', (req, res) => {
+    console.log("In put....")
     var userId = req.query;
     res.write(users[userId.id].name + '-');
     res.write(users[userId.id].age + '(');
@@ -49,9 +54,6 @@ app.get('/user', (req, res) => {
     res.send()
 })
 
-function submitHandler(){
-    console.log("IN submit.....")
-}
 
 
 
