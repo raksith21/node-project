@@ -2,17 +2,26 @@ const { Client } = require('pg');
 const express = require('express');
 const bodyParser = require('body-parser');
 const importPath = require('path');
+require('dotenv').config();
 const app = express();
 const port = 3000;
 
 
+// const client = new Client({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'postgres',
+//     password: 'Raks@2002',
+//     port: 5432,
+// });
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'Raks@2002',
-    port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.PORT,
 });
+
 
 async function connectToDatabase() {
     try {
@@ -152,3 +161,29 @@ app.get('/update/values', (req,res)=>{
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 });
+
+
+
+// const { Client } = require('pg');
+// const dotenv = require('dotenv');
+
+// // Load environment variables from a .env file
+// dotenv.config();
+
+// // Connect to PostgreSQL
+// const client = new Client({
+//   host: process.env.PGHOST,
+//   port: process.env.PGPORT,
+//   database: process.env.PGDATABASE,
+//   user: process.env.PGUSER,
+//   password: process.env.PGPASSWORD
+// });
+
+// client.connect();
+
+// // Perform database operations
+// // ...
+
+// // Close the connection
+// client.end();
+
