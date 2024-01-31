@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .formArea{
+            text-align: center;
+        }
+    </style>
+    <!-- <script>
+        let data = JSON.stringify(updateData);
+        console.log(data);
+        // document.getElementById('updateid').value = userData.id;
+    </script> -->
+</head>
+<body>
+    <form action="/update/values" method="get" class="formArea" id="updateformId">
+        <label for="id">ID:</label>
+        <br>
+        <input name="id" type="number" id="updateid" value="<%= updateData.id %>" >
+        <br> <br>
+        <label for="name" class="name1">Name:</label>
+        <br>
+        <input name="name" type="text" id="updatename1" value="<%= updateData.name %>">
+        <br> <br>
+        <label for="age" class="age1">Age:</label>
+        <br>
+        <input name="age" type="number" id="updateage1" value="<%= updateData.age %>">
+        <br><br>
+        <label for="degree" class="degree1">Degree:</label>
+        <br>
+        <input name="degree" type="text" id="updatedegree1" value="<%= updateData.degree %>">
+        <br><br>
+        <label for="course" class="course1">Course:</label>
+        <br>
+        <input name="course" type="text" id="updatecourse1" value="<%= updateData.course %>">
+        <br><br>
+        <input  type="submit" value="Submit">
+        <br><br>
+    </form>
+</body>
+</html>

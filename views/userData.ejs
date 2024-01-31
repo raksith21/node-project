@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .formArea{
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        function actionValue(e) {
+            if(e.value == 'Create'){
+                document.getElementById('formId').method = 'post'
+            }
+            else if(e.value == 'Read'){
+                document.getElementById('formId').method = 'get'
+            }
+            else if(e.value == 'Update'){
+                document.getElementById('formId').method = 'get'
+                document.getElementById('formId').action = '/update'
+            }
+            else{
+                console.log('In delete cont...')
+                document.getElementById('formId').action ='/delete'
+            }
+            if (e.value == 'Delete' || e.value =='Read' || e.value == 'Update') {
+                document.getElementById('name1').disabled = true;
+                document.getElementById('age1').disabled = true;
+                document.getElementById('course1').disabled = true;
+                document.getElementById('degree1').disabled = true;
+            } 
+
+            else {
+                document.getElementById('name1').disabled = false;
+                document.getElementById('age1').disabled = false;
+                document.getElementById('course1').disabled = false;
+                document.getElementById('degree1').disabled = false;
+            } 
+        }
+
+
+    </script>
+    <title>USER DETAIL</title>
+</head>
+<body>
+    <form action="/" method="post" class="formArea" id="formId">
+        <label for="action">Select Action:</label>
+        <br>
+        <select name="action" id="action1" onchange="actionValue(this)">
+            <option value="Create">Create</option>
+            <option value="Read">Read</option>
+            <option value="Update">Update</option>
+            <option value="Delete">Delete</option>
+        </select>
+        <br /><br />
+        <label for="id">ID:</label>
+        <br>
+        <input name="id" type="number">
+        <br> <br>
+        <label for="name" class="name1">Name:</label>
+        <br>
+        <input name="name" type="text" id="name1">
+        <br> <br>
+        <label for="age" class="age1">Age:</label>
+        <br>
+        <input name="age" type="number" id="age1">
+        <br><br>
+        <label for="degree" class="degree1">Degree:</label>
+        <br>
+        <input name="degree" type="text" id="degree1">
+        <br><br>
+        <label for="course" class="course1">Course:</label>
+        <br>
+        <input name="course" type="text" id="course1">
+        <br><br>
+        <input  type="submit" value="Submit">
+        <br><br>
+    </form>
+    <h2 id="dataDisplay"></h2>
+</body>
+</html>
